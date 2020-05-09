@@ -1,32 +1,35 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
     <router-view />
   </div>
 </template>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+// Slabo and Roboto Font Url Link
+@import url("https://fonts.googleapis.com/css2?family=Roboto&family=Slabo+27px&display=swap");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+:root {
+  --main-bg-color: #fefffe;
+  --primary-bg-color: #212b45;
+  --primary-text-color: #ffffff;
+  --white: #ffffff;
 }
 
-#nav {
-  padding: 30px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+#app {
+  font-family: Roboto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.text-secondary {
+  font-family: Slabo 27px;
+  color: var(--main-bg-color);
 }
 </style>
