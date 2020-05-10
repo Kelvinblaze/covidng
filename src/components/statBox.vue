@@ -15,7 +15,7 @@
           : ''
       ]"
     >
-      765
+      {{ boxCount }}
     </h2>
   </div>
 </template>
@@ -26,6 +26,9 @@ export default {
   props: {
     boxName: {
       type: String
+    },
+    boxCount: {
+      type: Number
     }
   },
   data() {

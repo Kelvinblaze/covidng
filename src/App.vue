@@ -10,7 +10,7 @@
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
 :root {
-  --main-bg-color: #fefffe;
+  --main-bg-color: #e5e5e5;
   --primary-bg-color: #212b45;
   --primary-text-color: #ffffff;
   --white: #ffffff;
@@ -29,7 +29,7 @@
 }
 
 .text-secondary {
-  font-family: Slabo 27px;
+  font-family: Slabo;
   color: var(--main-bg-color);
 }
 </style>

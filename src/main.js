@@ -2,7 +2,11 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import vueResource from "vue-resource";
+
 import "./registerServiceWorker";
+
+Vue.use(vueResource);
 
 Vue.config.productionTip = false;
 

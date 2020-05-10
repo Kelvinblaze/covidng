@@ -1,27 +1,24 @@
 <template>
   <div class="home">
     <div class="state-selector-container">
-      <p class="text-secondary">Covid-19 Tracker</p>
+      <p class="text-secondary">Covid-19 Tracker for Nigeria</p>
       <div class="dropdown-menu">
-        <div class="selected-state" @click="toggleDropDown()">
-          <h1>Lagos</h1>
-          <span class="material-icons">arrow_drop_down</span>
-        </div>
-
-        <div class="list" v-show="dropdown">
-          <ul>
-            <li>Anambra</li>
-          </ul>
+        <div class="selected-state">
+          <dropdown
+            :config="config"
+            @setSelectedOption="checkStateTotal($event)"
+          >
+          </dropdown>
         </div>
       </div>
-      <p class="text-secondary">Last Updated 1 hour ago</p>
+      <p class="text-secondary">Latest Updated Statistics</p>
 
       <div class="statsbox">
         <div class="grid-layout">
-          <statisticBox boxName="CONFIRMED" />
-          <statisticBox boxName="ACTIVE" />
-          <statisticBox boxName="RECOVERED" />
-          <statisticBox boxName="DECEASED" />
+          <statisticBox boxName="CONFIRMED" :boxCount="cases.confirmedCases" />
+          <statisticBox boxName="ACTIVE" :boxCount="cases.activeCases" />
+          <statisticBox boxName="RECOVERED" :boxCount="cases.discharged" />
+          <statisticBox boxName="DECEASED" :boxCount="cases.death" />
         </div>
       </div>
     </div>
@@ -30,19 +27,163 @@
 
 <script>
 import statisticBox from "@/components/statBox";
+import dropdown from "vue-dynamic-dropdown";
 export default {
   name: "Home",
   components: {
-    statisticBox
+    statisticBox,
+    dropdown
   },
   data() {
     return {
-      dropdown: false
+      cases: [],
+      config: {
+        options: [
+          {
+            value: "Abia"
+          },
+          {
+            value: "Adamawa"
+          },
+          {
+            value: "Akwa Ibom"
+          },
+          {
+            value: "Anambra"
+          },
+          {
+            value: "Bauchi"
+          },
+          {
+            value: "Bayelsa"
+          },
+          {
+            value: "Benue"
+          },
+          {
+            value: "Borno"
+          },
+          {
+            value: "Cross River"
+          },
+          {
+            value: "Delta"
+          },
+          {
+            value: "Ebonyi"
+          },
+          {
+            value: "Edo"
+          },
+          {
+            value: "FCT"
+          },
+          {
+            value: "Gombe"
+          },
+          {
+            value: "Imo"
+          },
+          {
+            value: "Jigawa"
+          },
+          {
+            value: "Kaduna"
+          },
+          {
+            value: "Kano"
+          },
+          {
+            value: "Katsina"
+          },
+          {
+            value: "Kebbi"
+          },
+          {
+            value: "Kogi"
+          },
+          {
+            value: "Kwara"
+          },
+          {
+            value: "Lagos"
+          },
+          {
+            value: "Nasarawa"
+          },
+          {
+            value: "Niger"
+          },
+          {
+            value: "Ogun"
+          },
+          {
+            value: "Ondo"
+          },
+          {
+            value: "Osun"
+          },
+          {
+            value: "Oyo"
+          },
+          {
+            value: "Plateau"
+          },
+          {
+            value: "Rivers"
+          },
+          {
+            value: "Sokoto"
+          },
+          {
+            value: "Taraba"
+          },
+          {
+            value: "Yobe"
+          },
+          {
+            value: "Zamfara"
+          }
+        ],
+        prefix: "State",
+        backgroundColor: "white",
+        border: "blue"
+      }
     };
   },
+  created() {
+    this.fetchTotal();
+  },
   methods: {
-    toggleDropDown() {
-      this.dropdown = !this.dropdown;
+    async fetchTotal() {
+      try {
+        const baseUrl = "https://covid19ngr.herokuapp.com/api/totals/";
+        let apiCall = await this.$http.get(baseUrl);
+        let apiJsonResponse = await apiCall.json();
+
+        this.cases = apiJsonResponse.data;
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    async checkStateTotal(event) {
+      try {
+        let state = event.value;
+
+        let stateName = state
+          .split(" ")
+          .join("")
+          .toLowerCase();
+        this.config.prefix = state;
+
+        const baseUrl = `https://covid19ngr.herokuapp.com/api/states/${stateName}`;
+        let apiCall = await this.$http.get(baseUrl);
+        let apiJsonResponse = await apiCall.json();
+
+        this.cases = apiJsonResponse.data;
+      } catch (err) {
+        console.log("An error occurred");
+      }
     }
   }
 };
@@ -65,10 +206,7 @@ export default {
     padding: 1.5em 0;
 
     .selected-state {
-      display: inline-flex;
-      align-items: center;
       cursor: pointer;
-
       span {
         color: pink;
       }
