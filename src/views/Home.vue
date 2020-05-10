@@ -77,7 +77,7 @@ export default {
           },
 
           {
-            value: "EKiti"
+            value: "Ekiti"
           },
           {
             value: "FCT"
