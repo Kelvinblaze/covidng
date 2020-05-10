@@ -75,6 +75,10 @@ export default {
           {
             value: "Edo"
           },
+
+          {
+            value: "EKiti"
+          },
           {
             value: "FCT"
           },
