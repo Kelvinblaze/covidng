@@ -203,11 +203,11 @@ export default {
   background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C92AC' fill-opacity='0.05' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
   height: 40vh;
   width: 100%;
-  padding: 1.5em;
+  padding: 1.5rem;
   color: var(--primary-text-color);
 
   .dropdown-menu {
-    padding: 1.5em 0;
+    padding: 1.5rem 0;
 
     .selected-state {
       cursor: pointer;
@@ -226,7 +226,7 @@ export default {
   .grid-layout {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 16px;
+    grid-gap: 1rem;
   }
 }
 
@@ -237,7 +237,7 @@ export default {
   position: absolute;
   top: 120px;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  border-radius: 0.5em;
+  border-radius: 0.5rem;
 
   color: black;
 }

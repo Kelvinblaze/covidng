@@ -22,6 +22,12 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 62.5%;
+}
+body {
+  font-size: 10px;
+}
 #app {
   font-family: Roboto;
   -webkit-font-smoothing: antialiased;
@@ -31,5 +37,6 @@
 .text-secondary {
   font-family: Slabo;
   color: var(--main-bg-color);
+  font-size: 14px;
 }
 </style>
