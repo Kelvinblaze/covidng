@@ -26,7 +26,7 @@ html {
   font-size: 62.5%;
 }
 body {
-  font-size: 10px;
+  font-size: 1.6rem;
 }
 #app {
   font-family: Roboto;
@@ -35,8 +35,7 @@ body {
 }
 
 .text-secondary {
-  font-family: Slabo;
   color: var(--main-bg-color);
-  font-size: 14px;
+  font-size: 1.6rem;
 }
 </style>

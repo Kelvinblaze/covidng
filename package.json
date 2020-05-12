@@ -9,7 +9,9 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "@chakra-ui/vue": "^0.5.0",
     "core-js": "^3.6.4",
+    "emotion": "^10.0.27",
     "express": "^4.17.1",
     "register-service-worker": "^1.7.1",
     "serve-static": "^1.14.1",

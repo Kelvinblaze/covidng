@@ -7,12 +7,10 @@
           <dropdown
             :config="config"
             @setSelectedOption="checkStateTotal($event)"
-          >
-          </dropdown>
+          ></dropdown>
         </div>
       </div>
       <p class="text-secondary">Latest Updated Statistics</p>
-
       <div class="statsbox">
         <div class="grid-layout">
           <statisticBox boxName="CONFIRMED" :boxCount="cases.confirmedCases" />
