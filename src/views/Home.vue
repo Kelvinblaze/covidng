@@ -17,7 +17,6 @@
           <statisticBox boxName="ACTIVE" :boxCount="cases.activeCases" />
           <statisticBox boxName="RECOVERED" :boxCount="cases.discharged" />
           <statisticBox boxName="DECEASED" :boxCount="cases.death" />
-          
         </div>
       </div>
     </div>

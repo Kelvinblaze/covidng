@@ -1,88 +1,125 @@
 <template>
   <c-box w="100%">
     <c-box
-      px="3rem"
-      py="2rem"
-      bg="#0d8e541a"
-      h="60vh"
-      roundedBottomRight="50px"
-      roundedBottomLeft="50px"
+      v-if="isLoading"
+      d="flex"
+      w="100%"
+      h="100vh"
+      justifyContent="center"
+      alignItems="center"
     >
-      <c-box
-        d="flex"
-        justifyContent="space-between"
-        alignItems="center"
-        py="1.5rem"
-      >
-        <c-icon name="align-left" color="vue.500" size="2rem"></c-icon>
-        <c-icon name="search" color="vue.500" size="2rem"></c-icon>
-      </c-box>
-
-      <c-box
-        mt="3rem"
-        d="grid"
-        gridTemplateColumns="repeat(auto-fill, minmax(145px, 1fr))"
-        gridGap="8px"
-      >
-        <DataBox
-          :icon="confirmedIcon"
-          caseName="Confirmed Cases"
-          :caseCount="cases.confirmedCases"
+      <c-stack>
+        <c-spinner
+          thickness="4px"
+          speed="0.65s"
+          empty-color="green.200"
+          color="vue.500"
+          size="xl"
+          class="alignItem"
         />
-        <DataBox
-          :icon="deathIcon"
-          caseName="Total Death"
-          :caseCount="cases.death"
-        />
-        <DataBox
-          :icon="recoveredIcon"
-          caseName="Total Recovered"
-          :caseCount="cases.discharged"
-        />
-        <DataBox
-          :icon="newCasesIcon"
-          caseName="Active Cases"
-          :caseCount="cases.activeCases"
-        />
-      </c-box>
+        <c-text textAlign="center" fontSize="4xl" color="vue.500"
+          >Loading</c-text
+        >
+      </c-stack>
     </c-box>
-
-    <c-box px="3rem" py="4rem">
-      <c-text fontSize="4xl" fontWeight="800" letterSpacing="1.2px"
-        >Preventions</c-text
+    <c-box v-else>
+      <c-box
+        px="3rem"
+        py="2rem"
+        bg="#0d8e541a"
+        h="auto"
+        roundedBottomRight="50px"
+        roundedBottomLeft="50px"
       >
-      <c-box d="flex" justifyContent="space-between" py="2rem">
-        <c-stack>
-          <c-image :src="washhandIcon"></c-image>
-          <c-text fontWeight="600" color="vue.600" textAlign="center" mt="1rem"
-            >Wash Hand</c-text
-          >
-        </c-stack>
+        <c-box
+          d="flex"
+          justifyContent="space-between"
+          alignItems="center"
+          py="1.5rem"
+        >
+          <c-icon name="align-left" color="vue.500" size="2rem"></c-icon>
+          <c-icon name="search" color="vue.500" size="2rem"></c-icon>
+        </c-box>
 
-        <c-stack>
-          <c-image :src="usemasksIcon"></c-image>
-          <c-text fontWeight="600" color="vue.600" textAlign="center" mt="1rem"
-            >Use Masks</c-text
-          >
-        </c-stack>
-
-        <c-stack>
-          <c-image :src="cleanIcon"></c-image>
-          <c-text fontWeight="600" color="vue.600" textAlign="center" mt="1rem"
-            >Clean Disinfect</c-text
-          >
-        </c-stack>
+        <c-box
+          mt="3rem"
+          d="grid"
+          gridTemplateColumns="repeat(auto-fill, minmax(145px, 1fr))"
+          gridGap="8px"
+          pb="2rem"
+        >
+          <DataBox
+            :icon="confirmedIcon"
+            caseName="Confirmed Cases"
+            :caseCount="cases.confirmedCases"
+          />
+          <DataBox
+            :icon="deathIcon"
+            caseName="Total Death"
+            :caseCount="cases.death"
+          />
+          <DataBox
+            :icon="recoveredIcon"
+            caseName="Total Recovered"
+            :caseCount="cases.discharged"
+          />
+          <DataBox
+            :icon="newCasesIcon"
+            caseName="Active Cases"
+            :caseCount="cases.activeCases"
+          />
+        </c-box>
       </c-box>
-    </c-box>
 
-    <c-box px="3rem" pb="3rem">
-      <c-image :src="bottomBanner" width="100%" />
+      <c-box px="3rem" py="4rem">
+        <c-text fontSize="4xl" fontWeight="800" letterSpacing="1.2px"
+          >Preventions</c-text
+        >
+        <c-box d="flex" justifyContent="space-between" py="2rem">
+          <c-stack>
+            <c-image :src="washhandIcon"></c-image>
+            <c-text
+              fontWeight="600"
+              color="vue.600"
+              textAlign="center"
+              mt="1rem"
+              >Wash Hand</c-text
+            >
+          </c-stack>
+
+          <c-stack>
+            <c-image :src="usemasksIcon"></c-image>
+            <c-text
+              fontWeight="600"
+              color="vue.600"
+              textAlign="center"
+              mt="1rem"
+              >Use Masks</c-text
+            >
+          </c-stack>
+
+          <c-stack>
+            <c-image :src="cleanIcon"></c-image>
+            <c-text
+              fontWeight="600"
+              color="vue.600"
+              textAlign="center"
+              mt="1rem"
+              >Clean Disinfect</c-text
+            >
+          </c-stack>
+        </c-box>
+      </c-box>
+
+      <c-box px="3rem" pb="3rem">
+        <c-image :src="bottomBanner" width="100%" />
+      </c-box>
     </c-box>
   </c-box>
 </template>
 
 <script lang="js">
-import { CBox, CIcon, CText, CStack, CImage} from '@chakra-ui/vue'
+import { CBox, CIcon, CText, CStack, CImage, CSpinner} from '@chakra-ui/vue'
 import DataBox from "@/components/DataBox";
 
 export default {
@@ -93,11 +130,13 @@ export default {
     CText,
     CStack,
     CImage,
+    CSpinner,
     DataBox
   },
   data() {
     return {
-      cases: []
+      cases: [],
+      isLoading: true
     }
   },
   computed: {
@@ -136,8 +175,9 @@ export default {
         const baseUrl = "https://covid19ngr.herokuapp.com/api/totals/";
         let apiCall = await this.$http.get(baseUrl);
         let apiJsonResponse = await apiCall.json();
-
-        this.cases = apiJsonResponse.data;
+        let data = apiJsonResponse.data;
+        this.cases = data;
+        this.isLoading = false;
       } catch (err) {
         console.log(err);
       }
@@ -145,3 +185,9 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.alignItem {
+  margin-left: 20px;
+}
+</style>
