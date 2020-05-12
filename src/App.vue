@@ -6,7 +6,7 @@
 
 <style lang="scss">
 // Slabo and Roboto Font Url Link
-@import url("https://fonts.googleapis.com/css2?family=Roboto&family=Slabo+27px&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,300&display=swap");
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
 :root {
@@ -27,6 +27,7 @@ html {
 }
 body {
   font-size: 1.6rem;
+  font-family: "Roboto", sans-serif;
 }
 #app {
   font-family: Roboto;
