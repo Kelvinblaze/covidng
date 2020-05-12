@@ -5,15 +5,29 @@ import store from "./store";
 import vueResource from "vue-resource";
 import Chakra, { CThemeProvider, CReset } from "@chakra-ui/vue";
 
+// Import FontAwesome icons
+import { faAlignLeft, faSearch } from "@fortawesome/free-solid-svg-icons";
+
 import "./registerServiceWorker";
 
 Vue.use(vueResource);
-Vue.use(Chakra);
+Vue.use(Chakra, {
+  icons: {
+    // Here we state that we use `fa`
+    // icons library for Chakra's
+    // internal icon parser
+    iconPack: "fa",
+    iconSet: {
+      faAlignLeft,
+      faSearch
+    }
+  }
+});
 
 Vue.config.productionTip = false;
 
 new Vue({
   router,
   store,
-  render: (h) => h(CThemeProvider, [h(CReset), h(App)]),
+  render: h => h(CThemeProvider, [h(CReset), h(App)])
 }).$mount("#app");
