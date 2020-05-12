@@ -12,7 +12,7 @@
     </c-box>
     <c-box d="flex" mt="1.5rem" justifyContent="space-between">
       <c-stack>
-        <c-text fontSize="4xl" fontWeight="800">1055</c-text>
+        <c-text fontSize="4xl" fontWeight="800">{{ caseCount }}</c-text>
         <c-text fontSize="small">People</c-text>
       </c-stack>
       <c-image h="auto" :src="graphIcon" />
@@ -24,7 +24,7 @@
 import { CBox, CImage, CText, CStack } from "@chakra-ui/vue";
 export default {
   name: "dataBox",
-  props: ["icon", "caseName"],
+  props: ["icon", "caseName", "caseCount"],
   components: {
     CBox,
     CImage,

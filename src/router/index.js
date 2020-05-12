@@ -9,7 +9,7 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home
+    component: HomePage
   },
   {
     path: "/about",
@@ -23,7 +23,7 @@ const routes = [
   {
     path: "/home",
     name: "Home Page",
-    component: HomePage
+    component: Home
   }
 ];
 

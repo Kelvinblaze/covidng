@@ -24,10 +24,26 @@
         gridTemplateColumns="repeat(auto-fill, minmax(145px, 1fr))"
         gridGap="8px"
       >
-        <DataBox :icon="confirmedIcon" caseName="Confirmed Cases" />
-        <DataBox :icon="deathIcon" caseName="Total Death" />
-        <DataBox :icon="recoveredIcon" caseName="Total Recovered" />
-        <DataBox :icon="newCasesIcon" caseName="New Cases" />
+        <DataBox
+          :icon="confirmedIcon"
+          caseName="Confirmed Cases"
+          :caseCount="cases.confirmedCases"
+        />
+        <DataBox
+          :icon="deathIcon"
+          caseName="Total Death"
+          :caseCount="cases.death"
+        />
+        <DataBox
+          :icon="recoveredIcon"
+          caseName="Total Recovered"
+          :caseCount="cases.discharged"
+        />
+        <DataBox
+          :icon="newCasesIcon"
+          caseName="Active Cases"
+          :caseCount="cases.activeCases"
+        />
       </c-box>
     </c-box>
 
@@ -38,23 +54,29 @@
       <c-box d="flex" justifyContent="space-between" py="2rem">
         <c-stack>
           <c-image :src="washhandIcon"></c-image>
-          <c-text fontWeight="600" color="vue.500">Wash Hand</c-text>
+          <c-text fontWeight="600" color="vue.600" textAlign="center" mt="1rem"
+            >Wash Hand</c-text
+          >
         </c-stack>
 
         <c-stack>
           <c-image :src="usemasksIcon"></c-image>
-          <c-text fontWeight="600" color="vue.500" textAlign="center"
+          <c-text fontWeight="600" color="vue.600" textAlign="center" mt="1rem"
             >Use Masks</c-text
           >
         </c-stack>
 
         <c-stack>
           <c-image :src="cleanIcon"></c-image>
-          <c-text fontWeight="600" color="vue.500" textAlign="center"
+          <c-text fontWeight="600" color="vue.600" textAlign="center" mt="1rem"
             >Clean Disinfect</c-text
           >
         </c-stack>
       </c-box>
+    </c-box>
+
+    <c-box px="3rem" pb="3rem">
+      <c-image :src="bottomBanner" width="100%" />
     </c-box>
   </c-box>
 </template>
@@ -72,6 +94,11 @@ export default {
     CStack,
     CImage,
     DataBox
+  },
+  data() {
+    return {
+      cases: []
+    }
   },
   computed: {
      confirmedIcon() {
@@ -94,7 +121,27 @@ export default {
     },
      cleanIcon () {
       return require("../assets/cleanIcon.svg");
+    },
+    bottomBanner () {
+      return require("../assets/bottombanner.svg");
+
     }
+  },
+  created () {
+    this.fetchTotal();
+  },
+  methods: {
+       async fetchTotal() {
+      try {
+        const baseUrl = "https://covid19ngr.herokuapp.com/api/totals/";
+        let apiCall = await this.$http.get(baseUrl);
+        let apiJsonResponse = await apiCall.json();
+
+        this.cases = apiJsonResponse.data;
+      } catch (err) {
+        console.log(err);
+      }
+    },
   },
 }
 </script>
