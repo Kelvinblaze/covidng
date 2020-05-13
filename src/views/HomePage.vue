@@ -31,20 +31,17 @@
         roundedBottomRight="50px"
         roundedBottomLeft="50px"
       >
-        <c-box
-          d="flex"
-          justifyContent="space-between"
-          alignItems="center"
-          py="1.5rem"
-        >
-          <c-icon name="align-left" color="vue.500" size="2rem"></c-icon>
-          <c-icon name="search" color="vue.500" size="2rem"></c-icon>
-        </c-box>
+        <!-- Navigation Bar -->
+        <Navbar />
 
         <c-box
           mt="3rem"
           d="grid"
-          gridTemplateColumns="repeat(auto-fill, minmax(145px, 1fr))"
+          :gridTemplateColumns="[
+            'repeat(auto-fill, minmax(100px, 1fr))',
+            'repeat(auto-fill, minmax(150px, 1fr))',
+            'repeat(auto-fill, minmax(200px, 1fr))'
+          ]"
           gridGap="8px"
           pb="2rem"
         >
@@ -119,19 +116,20 @@
 </template>
 
 <script lang="js">
-import { CBox, CIcon, CText, CStack, CImage, CSpinner} from '@chakra-ui/vue'
+import { CBox, CText, CStack, CImage, CSpinner} from '@chakra-ui/vue'
 import DataBox from "@/components/DataBox";
+import Navbar from "@/components/Navbar";
 
 export default {
   name: 'page',
   components: {
     CBox,
-    CIcon,
     CText,
     CStack,
     CImage,
     CSpinner,
-    DataBox
+    DataBox,
+    Navbar
   },
   data() {
     return {
