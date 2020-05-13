@@ -38,9 +38,9 @@
           mt="3rem"
           d="grid"
           :gridTemplateColumns="[
-            'repeat(auto-fill, minmax(100px, 1fr))',
+            'repeat(auto-fill, minmax(120px, 1fr))',
             'repeat(auto-fill, minmax(150px, 1fr))',
-            'repeat(auto-fill, minmax(200px, 1fr))'
+            'repeat(auto-fill, minmax(300px, 1fr))'
           ]"
           gridGap="8px"
           pb="2rem"
