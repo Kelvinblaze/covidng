@@ -26,10 +26,14 @@
 
         <c-drawer-body>
           <!-- Body Elements Goes Here -->
-          <c-list styleType="none" my="2rem" spacing="5">
-            <c-list-item>Home</c-list-item>
+          <c-list styleType="none" my="2rem" spacing="6" fontWeight="bold">
+            <c-list-item>
+              <c-link href="/">Home</c-link>
+            </c-list-item>
             <c-list-item>All States</c-list-item>
-            <c-list-item>About</c-list-item>
+            <c-list-item>
+              <c-link href="/about">About</c-link>
+            </c-list-item>
           </c-list>
         </c-drawer-body>
 
@@ -55,7 +59,8 @@ import {
   CDrawerContent,
   CDrawerCloseButton,
   CList,
-  CListItem
+  CListItem,
+  CLink
 } from "@chakra-ui/vue";
 
 export default {
@@ -73,7 +78,8 @@ export default {
     CDrawerContent,
     CDrawerCloseButton,
     CList,
-    CListItem
+    CListItem,
+    CLink
   },
   data() {
     return {
