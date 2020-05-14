@@ -26,9 +26,14 @@
 
         <c-drawer-body>
           <!-- Body Elements Goes Here -->
+          <c-list styleType="none" my="2rem" spacing="5">
+            <c-list-item>Home</c-list-item>
+            <c-list-item>All States</c-list-item>
+            <c-list-item>About</c-list-item>
+          </c-list>
         </c-drawer-body>
 
-        <c-drawer-footer>
+        <c-drawer-footer mb="10rem">
           <c-text>Created with ❤️ by Ifeanyi Kelvin Ossai</c-text>
         </c-drawer-footer>
       </c-drawer-content>
@@ -48,7 +53,9 @@ import {
   CDrawerHeader,
   CDrawerOverlay,
   CDrawerContent,
-  CDrawerCloseButton
+  CDrawerCloseButton,
+  CList,
+  CListItem
 } from "@chakra-ui/vue";
 
 export default {
@@ -64,7 +71,9 @@ export default {
     CDrawerHeader,
     CDrawerOverlay,
     CDrawerContent,
-    CDrawerCloseButton
+    CDrawerCloseButton,
+    CList,
+    CListItem
   },
   data() {
     return {
