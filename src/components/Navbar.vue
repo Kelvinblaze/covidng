@@ -30,7 +30,9 @@
             <c-list-item>
               <c-link href="/">Home</c-link>
             </c-list-item>
-            <c-list-item>All States</c-list-item>
+            <c-list-item>
+              <c-link href="/states">All States</c-link>
+            </c-list-item>
             <c-list-item>
               <c-link href="/about">About</c-link>
             </c-list-item>
