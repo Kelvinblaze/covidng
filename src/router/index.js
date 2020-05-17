@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import HomePage from "../views/HomePage.vue";
+import States from "../views/States.vue";
 
 Vue.use(VueRouter);
 
@@ -12,10 +13,8 @@ const routes = [
   },
   {
     path: "/states",
-    name: "Home",
-    component: () => {
-      import("../views/States.vue");
-    }
+    name: "States",
+    component: States
   },
   {
     path: "/about",
