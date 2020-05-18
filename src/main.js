@@ -5,6 +5,9 @@ import store from "./store";
 import vueResource from "vue-resource";
 import Chakra, { CThemeProvider, CReset } from "@chakra-ui/vue";
 
+import moment from "moment";
+Vue.use(moment);
+
 // Import FontAwesome icons
 import { faAlignLeft, faSearch } from "@fortawesome/free-solid-svg-icons";
 
