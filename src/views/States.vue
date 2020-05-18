@@ -1,48 +1,75 @@
 <template>
   <c-box>
-    <c-box px="3rem" py="2rem" bg="#0d8e541a" h="25vh">
-      <Navbar />
-
-      <c-box>
-        <c-text fontSize="6xl" fontWeight="bold" py="2rem">All States</c-text>
-      </c-box>
+    <c-box
+      v-if="isLoading"
+      d="flex"
+      w="100%"
+      h="100vh"
+      justifyContent="center"
+      alignItems="center"
+    >
+      <c-stack>
+        <c-spinner
+          thickness="4px"
+          speed="0.65s"
+          empty-color="green.200"
+          color="vue.500"
+          size="xl"
+          class="alignItem"
+        />
+        <c-text textAlign="center" fontSize="4xl" color="vue.500"
+          >Loading</c-text
+        >
+      </c-stack>
     </c-box>
+    <c-box v-else>
+      <c-box px="3rem" py="2rem" bg="#0d8e541a" h="25vh">
+        <Navbar />
 
-    <c-box mt="1rem" px="1rem">
-      <div class="header-menu">
-        <div class="menu">STATES</div>
-        <div class="menu case confirmed">C</div>
-        <div class="menu case active">A</div>
-        <div class="menu case recovered">R</div>
-        <div class="menu  case deaths">D</div>
-      </div>
+        <c-box>
+          <c-text fontSize="6xl" fontWeight="bold" py="2rem">All States</c-text>
+        </c-box>
+      </c-box>
 
-      <div class="states-menu" v-for="(state, index) in states" :key="index">
-        <div class="body-menu">
-          <div class="menu">{{ state.state.toUpperCase() }}</div>
-          <div class="menu case">{{ state.confirmedCases }}</div>
-          <div class="menu case">{{ state.activeCases }}</div>
-          <div class="menu case">{{ state.discharged }}</div>
-          <div class="menu  case">{{ state.death }}</div>
+      <c-box mt="1rem" px="1rem">
+        <div class="header-menu">
+          <div class="menu">STATES</div>
+          <div class="menu case confirmed">C</div>
+          <div class="menu case active">A</div>
+          <div class="menu case recovered">R</div>
+          <div class="menu  case deaths">D</div>
         </div>
-      </div>
+
+        <div class="states-menu" v-for="(state, index) in states" :key="index">
+          <div class="body-menu">
+            <div class="menu">{{ state.state.toUpperCase() }}</div>
+            <div class="menu case">{{ state.confirmedCases }}</div>
+            <div class="menu case">{{ state.activeCases }}</div>
+            <div class="menu case">{{ state.discharged }}</div>
+            <div class="menu  case">{{ state.death }}</div>
+          </div>
+        </div>
+      </c-box>
     </c-box>
   </c-box>
 </template>
 
 <script>
-import { CBox, CText } from "@chakra-ui/vue";
+import { CBox, CText, CStack, CSpinner } from "@chakra-ui/vue";
 import Navbar from "@/components/Navbar";
 export default {
   name: "States",
   components: {
     CBox,
     CText,
+    CStack,
+    CSpinner,
     Navbar
   },
   data() {
     return {
-      states: null
+      states: null,
+      isLoading: true
     };
   },
   mounted() {
@@ -58,9 +85,8 @@ export default {
         );
         const apiJsonResponse = await apiCall.json();
 
-        console.log(apiJsonResponse.data);
-
         this.states = apiJsonResponse.data;
+        this.isLoading = false;
       } catch {
         console.log("An error occurred");
       }
@@ -94,7 +120,6 @@ export default {
   .menu {
     padding: 1rem;
     background: rgba(236, 244, 240, 0.6);
-    font-weight: bold;
     font-size: 1.5rem;
     color: #333;
   }
@@ -114,5 +139,9 @@ export default {
 }
 .deaths {
   color: #ff2d55;
+}
+
+.alignItem {
+  margin-left: 20px;
 }
 </style>
