@@ -93,7 +93,7 @@ export default {
 
   .menu {
     padding: 1rem;
-    background: #fdfdfd;
+    background: rgba(236, 244, 240, 0.6);
     font-weight: bold;
     font-size: 1.5rem;
     color: #333;
